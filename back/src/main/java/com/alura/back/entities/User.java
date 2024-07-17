@@ -9,7 +9,7 @@ import java.time.LocalDate;
 @Data
 @AllArgsConstructor
 @Entity
-@Table
+@Table(name = "usuarios")
 public class User {
 
     @Id
@@ -22,7 +22,7 @@ public class User {
             strategy = GenerationType.SEQUENCE,
             generator = "user_sequence"
     )
-    private Long user_id;
+    private Long user_Id;
     private String firstName;
     private String lastName;
     private LocalDate dateOfBirths;
@@ -30,4 +30,8 @@ public class User {
     private String email;
     private String devType;
     private String role;
+
+    @OneToOne
+    @JoinColumn(name = "direccion_id")
+    private Direccion direccion;
 }
