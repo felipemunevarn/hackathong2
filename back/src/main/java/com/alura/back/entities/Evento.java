@@ -19,6 +19,9 @@ public class Evento {
     private Long evento_Id;
 
     @Column( nullable = false)
+    private String nombre;
+
+    @Column( nullable = false)
     private LocalDate fechaInscripcion;
 
     @Column(nullable = false)
