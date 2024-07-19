@@ -26,7 +26,6 @@ public class EquipoController {
     // TO-DO --->sacar el id del token en la petición
     @PostMapping
     public ResponseEntity<EquipoResponseDto> crearEquipos(@RequestBody User user){
-
         Long userId= 1L;
         return new ResponseEntity<>(equipoService.GererarEquipos(userId) , HttpStatus.CREATED);
     }
