@@ -1,7 +1,8 @@
 package com.alura.back.controllers;
 
+import com.alura.back.Dtos.responseDto.UserResponseDto;
 import com.alura.back.entities.User;
-import com.alura.back.services.UserService;
+import com.alura.back.services.implementService.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,15 +14,15 @@ import java.util.List;
 @RequestMapping(path = "api/v1/user")
 public class UserController {
 
-    private final UserService userService;
+    private final UserServiceImpl userService;
 
     @Autowired
-    public UserController(UserService userService) {
+    public UserController(UserServiceImpl userService) {
         this.userService = userService;
     }
 
     @GetMapping
-    public List<User> getUsers() {
+    public List<UserResponseDto> getUsers() {
         return userService.getUsers();
     }
 }
