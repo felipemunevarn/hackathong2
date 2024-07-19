@@ -1,0 +1,6 @@
+POSTGRES_DB_URL=postgresql://eventsmanager_user:hO4ftDivRhUoRwclHIc6SkT0rQMmRLkK@dpg-cq9b8btds78s739bqjjg-a.oregon-postgres.render.com/eventsmanager
+POSTGRES_DB_HOST=dpg-cq9b8btds78s739bqjjg-a.oregon-postgres.render.com
+POSTGRES_DB_PORT=5432
+POSTGRES_DB_PASSWORD=hO4ftDivRhUoRwclHIc6SkT0rQMmRLkK
+POSTGRES_DB_USERNAME=eventsmanager_user
+POSTGRES_DB_NAME=eventsmanager
