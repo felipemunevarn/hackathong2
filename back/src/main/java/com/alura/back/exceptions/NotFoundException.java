@@ -1,9 +1,6 @@
 package com.alura.back.exceptions;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
 import org.springframework.http.HttpStatus;
 
 /**
@@ -12,18 +9,18 @@ import org.springframework.http.HttpStatus;
  */
 
 @Data
-public class MiException extends RuntimeException {
+public class NotFoundException extends RuntimeException {
 
     private final String mensaje;
     private final HttpStatus statusCode;
 
-    public MiException(String mensaje, HttpStatus statusCode) {
+    public NotFoundException(String mensaje, HttpStatus statusCode) {
         super(mensaje);
         this.mensaje = mensaje;
         this.statusCode = statusCode;
     }
 
-    public MiException(String mensaje) {
+    public NotFoundException(String mensaje) {
         super(mensaje);
         this.mensaje = mensaje;
         this.statusCode = null;
