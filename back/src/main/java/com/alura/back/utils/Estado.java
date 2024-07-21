@@ -3,6 +3,6 @@ package com.alura.back.utils;
 public enum EstadoInscripcion {
 
     BAJA,
-    INSCRITO,
+    ACTIVA,
     ESPERA
 }
