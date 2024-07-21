@@ -20,6 +20,7 @@ public class Evento {
 
     @Column(name = "nombre", nullable = false)
     private String nombre;
+
     @Column( nullable = false)
     private LocalDate fechaCreacion;
 

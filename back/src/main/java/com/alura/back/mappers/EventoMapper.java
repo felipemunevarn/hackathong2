@@ -23,13 +23,12 @@ public class EventoMapper {
     return dto;
 }
 
-    public Evento toEvento(EventoRequestDto dto) {
+    public Evento toEvento(EventoRequestDto eventoRequestDto) {
         Evento evento = new Evento();
-        evento.setNombre(dto.getNombre());
-        evento.setEstado(dto.getEstado());
-        evento.setFechaCreacion(dto.getFechaCreacion());
-        evento.setMaxIntegrantesPorEquipo(dto.getMaxIntegrantesPorEquipo());
-        evento.setMinIntegrantesPorEquipo(dto.getMinIntegrantesPorEquipo());
+        evento.setNombre(eventoRequestDto.getNombre());
+        evento.setMaxIntegrantesPorEquipo(eventoRequestDto.getMaxIntegrantesPorEquipo());
+        evento.setMinIntegrantesPorEquipo(eventoRequestDto.getMinIntegrantesPorEquipo());
+        // No need to set fechaCreacion and estado here, as they are set in the save method
         return evento;
     }
 

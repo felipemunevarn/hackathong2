@@ -10,6 +10,7 @@ import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -37,9 +38,15 @@ public class EventoServiceImpl implements IEventService {
     @Override
     public EventoResponseDto save(EventoRequestDto eventoRequestDto) {
         Evento evento = eventoMapper.toEvento(eventoRequestDto);
-        evento.setFechaCreacion(eventoRequestDto.getFechaCreacion());
         evento.setMaxIntegrantesPorEquipo(eventoRequestDto.getMaxIntegrantesPorEquipo());
         evento.setMinIntegrantesPorEquipo(eventoRequestDto.getMinIntegrantesPorEquipo());
+
+        // Set the state to "ACTIVO" by default
+        evento.setEstado("ACTIVO");
+
+        // Set the creation date to the current date
+        evento.setFechaCreacion(LocalDate.now());
+
         evento = eventoRepository.save(evento);
         return eventoMapper.toEventoResponseDto(evento);
     }
@@ -55,10 +62,8 @@ public class EventoServiceImpl implements IEventService {
             .orElseThrow(() -> new EntityNotFoundException("Evento not found with id: " + id)); // Throw exception if not found
 
         existingEvento.setNombre(eventoRequestDto.getNombre());
-        existingEvento.setFechaCreacion(eventoRequestDto.getFechaCreacion());
         existingEvento.setMaxIntegrantesPorEquipo(eventoRequestDto.getMaxIntegrantesPorEquipo());
         existingEvento.setMinIntegrantesPorEquipo(eventoRequestDto.getMinIntegrantesPorEquipo());
-        existingEvento.setEstado(eventoRequestDto.getEstado());
 
         Evento updatedEvento = eventoRepository.save(existingEvento);
         return eventoMapper.toEventoResponseDto(updatedEvento);
