@@ -30,6 +30,7 @@ public class UserMapper {
         User user = new User();
         user.setFirstName(dto.getFirstName());
         user.setLastName(dto.getLastName());
+        user.setPassword(dto.getPassword());
         user.setDateOfBirths(dto.getDateOfBirths());
         user.setGender(dto.getGender());
         user.setEmail(dto.getEmail());

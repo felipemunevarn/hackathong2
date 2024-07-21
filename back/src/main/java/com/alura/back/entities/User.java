@@ -27,6 +27,7 @@ public class User {
     private Long user_Id;
     private String firstName;
     private String lastName;
+    private String password;
     private LocalDate dateOfBirths;
     private String gender;
     private String email;

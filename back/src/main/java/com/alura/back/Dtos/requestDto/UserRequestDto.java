@@ -9,6 +9,7 @@ import java.time.LocalDate;
 public class UserRequestDto {
     private String firstName;
     private String lastName;
+    private String password;
     private LocalDate dateOfBirths;
     private String gender;
     private String email;
