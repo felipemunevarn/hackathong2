@@ -13,7 +13,7 @@ public class EventoMapper {
 
     public EventoResponseDto toEventoResponseDto(Evento evento) {
     EventoResponseDto dto = new EventoResponseDto(
-            evento.getEvento_Id(),
+            evento.getEvento_id(),
             evento.getNombre(),
             evento.getFechaCreacion(),
             evento.getMaxIntegrantesPorEquipo(),

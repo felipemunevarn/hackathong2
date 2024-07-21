@@ -5,9 +5,7 @@ import com.alura.back.entities.Equipo;
 import com.alura.back.entities.Evento;
 import com.alura.back.entities.Inscripcion;
 import com.alura.back.entities.User;
-import com.alura.back.utils.EstadoInscripcion;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.alura.back.utils.Estado;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -20,18 +18,19 @@ public class InscripcionMapper {
 
 
     public InscripcionResponseDto fromInscripcionToInscripcionResponseDto(){
-        return new InscripcionResponseDto(inscripcion.getInscripcion_Id(),
+        return new InscripcionResponseDto(inscripcion.getInscripcion_id(),
                 inscripcion.getUser().getFirstName() + " " + inscripcion.getUser().getLastName(),
+                inscripcion.getUser().getDevType(),
                 inscripcion.getFechaInscripcion(),
                 inscripcion.getEvento().getNombre(),
-                EstadoInscripcion.ESPERA.name());
+                Estado.ESPERA.name());
     }
 
     public Inscripcion fromDataToInscripcion (User user, Equipo equipo, Evento evento){
         Inscripcion inscrip = new Inscripcion();
 
         inscrip.setFechaInscripcion(LocalDate.now());
-        inscrip.setEstado(EstadoInscripcion.ESPERA.name());
+        inscrip.setEstado(Estado.ESPERA.name());
         inscrip.setUser(user);
         inscrip.setEvento(evento);
         inscrip.setEquipo(equipo);
@@ -41,11 +40,13 @@ public class InscripcionMapper {
         return inscripcion;
     }
 
-    public List<InscripcionResponseDto> fromListIncripcionToListINcripcionResponseDto(List<Inscripcion> inscripciones) {
+    public List<InscripcionResponseDto> fromListIncripcionToListInscripcionResponseDto(List<Inscripcion> inscripciones) {
         return inscripciones.stream()
+                .filter(inscripcion -> !inscripcion.getEstado().equalsIgnoreCase("BAJA"))
                 .map(inscripcion -> new InscripcionResponseDto(
-                        inscripcion.getInscripcion_Id(),
-                        inscripcion.getEvento().getNombre(),
+                        inscripcion.getInscripcion_id(),
+                        inscripcion.getUser().getFirstName() + " " + inscripcion.getUser().getLastName(),
+                        inscripcion.getUser().getDevType(),
                         inscripcion.getFechaInscripcion(),
                         inscripcion.getEvento().getNombre(),
                         inscripcion.getEstado()

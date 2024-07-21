@@ -30,7 +30,7 @@ public class EventoController {
         } catch (Exception e) {
             // Log the exception message
             System.out.println("Error while creating event: " + e.getMessage());
-            return new ResponseEntity<>(new ErrorResponseDto(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR), HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(new ErrorResponseDto(e.getMessage()),  HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -59,14 +59,14 @@ public class EventoController {
     public ResponseEntity<?> updateEvento(@PathVariable Long id, @Valid @RequestBody EventoRequestDto eventoRequestDto) {
         try {
             if (eventoService.findById(id) == null) {
-                return new ResponseEntity<>(new ErrorResponseDto("Evento not found with id: " + id, HttpStatus.NOT_FOUND), HttpStatus.NOT_FOUND);
+                return new ResponseEntity<>(new ErrorResponseDto("Evento not found with id: " + id), HttpStatus.NOT_FOUND);
             }
             EventoResponseDto updatedEvento = eventoService.update(id, eventoRequestDto);
             return new ResponseEntity<>(updatedEvento, HttpStatus.OK);
         } catch (Exception e) {
             // Log the exception message
             System.out.println("Error while updating event: " + e.getMessage());
-            return new ResponseEntity<>(new ErrorResponseDto(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR), HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(new ErrorResponseDto(e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -74,14 +74,14 @@ public class EventoController {
     public ResponseEntity<?> deleteEvento(@PathVariable Long id) {
         try {
             if (eventoService.findById(id) == null) {
-                return new ResponseEntity<>(new ErrorResponseDto("Evento not found with id: " + id, HttpStatus.NOT_FOUND), HttpStatus.NOT_FOUND);
+                return new ResponseEntity<>(new ErrorResponseDto("Evento not found with id: " + id), HttpStatus.NOT_FOUND);
             }
             eventoService.delete(id);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } catch (Exception e) {
             // Log the exception message
             System.out.println("Error while deleting event: " + e.getMessage());
-            return new ResponseEntity<>(new ErrorResponseDto(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR), HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(new ErrorResponseDto(e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }
