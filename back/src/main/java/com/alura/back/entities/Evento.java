@@ -16,16 +16,23 @@ import java.util.List;
 public class Evento {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long evento_Id;
+    private Long evento_id;
 
     @Column( nullable = false)
     private String nombre;
 
     @Column( nullable = false)
-    private LocalDate fechaInscripcion;
+    private LocalDate fechaCreacion;
 
     @Column(nullable = false)
     private String estado;
+
+    @Column(nullable = false)
+    private int maxIntegrantesPorEquipo;
+
+    @Column(nullable = false)
+    private int mimIntegrantesPorEquipo;
+
 
     @OneToMany(mappedBy = "evento")
     private List<Inscripcion> participantes;

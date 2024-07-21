@@ -1,5 +1,6 @@
 package com.alura.back.services.implementService;
 
+import com.alura.back.Dtos.responseDto.DeleteResponseDto;
 import com.alura.back.Dtos.responseDto.InscripcionResponseDto;
 import com.alura.back.entities.Equipo;
 import com.alura.back.entities.Evento;
@@ -11,17 +12,15 @@ import com.alura.back.repositories.EventoRepository;
 import com.alura.back.repositories.InscripcionRepository;
 import com.alura.back.repositories.UserRepository;
 import com.alura.back.services.interfaceService.IInscripcionService;
-import com.alura.back.utils.EstadoInscripcion;
+import com.alura.back.utils.Estado;
 import com.alura.back.exceptions.NotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 /**
  * Autor leonardo vargas
@@ -43,8 +42,8 @@ public class InscripcionServiceImpl implements IInscripcionService {
     @Override
     @Transactional
     public InscripcionResponseDto crearInscripcion(Long eventoId, Long userId) {
-        //siempre va a haber un equipo pod defecto
-        Optional<Equipo> equipoDefault = equipoRepository.findById(1L);
+        //siempre va a haber un equipo por defecto
+        //Optional<Equipo> equipoDefault = equipoRepository.findById(1L);
 
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new NotFoundException("Usuario no encontrado", HttpStatus.BAD_REQUEST));
@@ -52,7 +51,7 @@ public class InscripcionServiceImpl implements IInscripcionService {
         Evento evento = eventoRepository.findById(eventoId)
                 .orElseThrow(() -> new NotFoundException("evento no encontrado", HttpStatus.BAD_REQUEST));
 
-        Inscripcion inscripcion = mapper.fromDataToInscripcion(user, equipoDefault.get(), evento);
+        Inscripcion inscripcion = mapper.fromDataToInscripcion(user, null, evento);
 
         inscripcionRepository.save(inscripcion);
 
@@ -61,8 +60,26 @@ public class InscripcionServiceImpl implements IInscripcionService {
 
 
     @Override
-    public List<InscripcionResponseDto> ListarInscritos() {
-       return mapper.fromListIncripcionToListINcripcionResponseDto( inscripcionRepository.findAll());
+    public List<InscripcionResponseDto> ListarInscritos(Long eventoId ) {
+        //List<Inscripcion> lista= inscripcionRepository.getAllInscripcionesEvento(eventoId);
+        List<Inscripcion> lista= inscripcionRepository.getInscripcionesEvento(eventoId);
+        if (lista.isEmpty()){
+            throw new NotFoundException("No hay inscripciones asociadas al enevento id" , HttpStatus.BAD_REQUEST);
+        }
+       return mapper.fromListIncripcionToListInscripcionResponseDto(lista );
+    }
+
+    @Override
+    public DeleteResponseDto darBajaInscripcion(Long inscripId) {
+        Inscripcion inscripcion = inscripcionRepository.findById(inscripId)
+                .orElseThrow(() -> new NotFoundException("no se encontró inscrpción con el id enviado" , HttpStatus.BAD_REQUEST));
+
+        // borrado logico de inscripcion
+        inscripcion.setEstado(Estado.BAJA.name());
+
+        inscripcionRepository.save(inscripcion);
+
+        return new DeleteResponseDto(inscripcion.getInscripcion_id() ,  "Se ha dado de baja la inscripcion con exito");
     }
 
 }

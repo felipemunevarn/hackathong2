@@ -1,2 +1,3 @@
-package com.alura.back.Dtos.responseDto;public record EquipoResultadoResponseDto() {
-}
+package com.alura.back.Dtos.responseDto;
+
+public record EquipoResultadoResponseDto(String mensage) {}

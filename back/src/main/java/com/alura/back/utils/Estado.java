@@ -1,8 +1,11 @@
 package com.alura.back.utils;
 
-public enum EstadoInscripcion {
+public enum Estado {
 
     BAJA,
-    ACTIVA,
-    ESPERA
+    ACTIVO,
+    ESPERA,
+    INSCRITO,
+    COMPLETO,
+    IMCOMPLETO
 }
