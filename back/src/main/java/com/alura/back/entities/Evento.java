@@ -18,11 +18,17 @@ public class Evento {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long evento_Id;
 
-    @Column( nullable = false)
+    @Column(name = "nombre", nullable = false)
     private String nombre;
 
-    @Column( nullable = false)
-    private LocalDate fechaInscripcion;
+    @Column(name = "fecha_creacion", nullable = false)
+    private LocalDate fechaCreacion;
+
+    @Column(name = "max_integrantes_por_equipo", nullable = false)
+    private Integer maxIntegrantesPorEquipo;
+
+    @Column(name = "mim_integrantes_por_equipo", nullable = false)
+    private Integer minIntegrantesPorEquipo;
 
     @Column(nullable = false)
     private String estado;
