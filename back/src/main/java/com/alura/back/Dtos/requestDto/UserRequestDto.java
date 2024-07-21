@@ -12,6 +12,7 @@ public class UserRequestDto {
     private LocalDate dateOfBirths;
     private String gender;
     private String email;
+    private String password;
     private String devType;
     private String role;
 }

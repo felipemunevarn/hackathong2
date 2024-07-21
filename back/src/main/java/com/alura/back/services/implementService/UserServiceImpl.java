@@ -58,6 +58,7 @@ public class UserServiceImpl implements IUserService {
             user.setDateOfBirths(userRequestDto.getDateOfBirths());
             user.setGender(userRequestDto.getGender());
             user.setEmail(userRequestDto.getEmail());
+            user.setPassword(userRequestDto.getPassword());
             user.setDevType(userRequestDto.getDevType());
             user.setRole(userRequestDto.getRole());
             user = userRepository.save(user);

@@ -9,6 +9,7 @@ public record UserResponseDto (
     LocalDate dateOfBirths,
     String gender,
     String email,
+    String password,
     String devType,
     String role
 ) {

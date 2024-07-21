@@ -20,6 +20,7 @@ public class UserMapper {
                 user.getDateOfBirths(),
                 user.getGender(),
                 user.getEmail(),
+                user.getPassword(),
                 user.getDevType(),
                 user.getRole()
         );
@@ -33,6 +34,7 @@ public class UserMapper {
         user.setDateOfBirths(dto.getDateOfBirths());
         user.setGender(dto.getGender());
         user.setEmail(dto.getEmail());
+        user.setPassword(dto.getPassword());
         user.setDevType(dto.getDevType());
         user.setRole(dto.getRole());
         return user;
