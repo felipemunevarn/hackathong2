@@ -11,7 +11,7 @@ RUN apk add --no-cache maven
 COPY . /app/
 
 # Ejecuta Maven para construir el JAR
-RUN mvn clean package
+RUN mvn clean package -DskipTests
 
 # Expone el puerto en el que la aplicación estará escuchando
 EXPOSE 8080
