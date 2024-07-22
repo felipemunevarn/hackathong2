@@ -39,7 +39,7 @@ Base de datos PostgreSQL
  linkeding --> https://www.linkedin.com/in/leonardo-vargas1/
  
  Felipe Munevar
- https://github.com/felipemunevarn
+ linkeding --> https://www.linkedin.com/in/felipemunevarn/
  
  Clever Machaca
  github --> https://github.com/cleverjohann
