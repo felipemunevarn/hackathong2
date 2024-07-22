@@ -1,4 +1,4 @@
-# hackathong Alura Grupo 2
+# hackathon Alura Grupo 2
 
 # API de Gestión de Eventos y Grupos
 
