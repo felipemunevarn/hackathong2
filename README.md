@@ -6,9 +6,7 @@ Esta API permite la gestión completa de eventos y la generación automática de
 
 # Diagra DIR
 
-![AppGestionEquipos-Page-1 drawio](https://github.com/user-attachments/assets/2779a67a-8622-4a2e-81eb-162797c10b12)
-
-
+![AppGestionEquipos-Page-1 drawio (1)](https://github.com/user-attachments/assets/d0614c07-caf6-41ff-b968-ab73b1e15ee9)
 
 # Deploy
 Se utilizó Render para el despliegue de la API utilizando un contenedor Docker, el cual genera una imagen a través de la configuración establecida en el archivo Dockerfile.
