@@ -32,4 +32,18 @@ Hibernate
 
 Base de datos PostgreSQL
 
+# participantes
+
+ Leonardo vargas
+ leonardovargasfp@gmail.com
+ linkeding --> https://www.linkedin.com/in/leonardo-vargas1/
+ 
+ Felipe Munevar
+ https://github.com/felipemunevarn
+ 
+ Clever Machaca
+ github --> https://github.com/cleverjohann
+
+
+
   
