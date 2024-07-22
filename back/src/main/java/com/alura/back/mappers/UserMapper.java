@@ -3,6 +3,7 @@ package com.alura.back.mappers;
 import com.alura.back.Dtos.requestDto.UserRequestDto;
 import com.alura.back.Dtos.responseDto.UserResponseDto;
 import com.alura.back.entities.User;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
@@ -34,7 +35,7 @@ public class UserMapper {
         user.setDateOfBirths(dto.getDateOfBirths());
         user.setGender(dto.getGender());
         user.setEmail(dto.getEmail());
-        user.setPassword(dto.getPassword());
+        user.setPassword(new BCryptPasswordEncoder().encode(dto.getPassword()));
         user.setDevType(dto.getDevType());
         user.setRole(dto.getRole());
         return user;

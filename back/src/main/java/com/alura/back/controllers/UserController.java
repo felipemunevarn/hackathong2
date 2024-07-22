@@ -14,7 +14,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping(path = "api/v1/user")
-//@PreAuthorize("denyAll()")
 public class UserController {
 
     private final UserServiceImpl userService;
@@ -25,20 +24,17 @@ public class UserController {
     }
 
     @GetMapping
-//    @PreAuthorize("hasAuthority('READ')")
     public ResponseEntity<List<UserResponseDto>> getUsers() {
         List<UserResponseDto> users = userService.getUsers();
         return new ResponseEntity<>(users, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-//    @PreAuthorize("hasAuthority('READ')")
     public ResponseEntity<UserResponseDto> getUserById(@PathVariable Long id) {
         UserResponseDto user = userService.getUserById(id);
         return user != null ? new ResponseEntity<>(user, HttpStatus.OK) : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
     @PostMapping
-//    @PreAuthorize("hasAuthority('READ') or hasAuthority('CREATE')")
     public ResponseEntity<UserResponseDto> createUser(@RequestBody UserRequestDto userRequestDto) {
         UserResponseDto newUser = userService.createUser(userRequestDto);
         return new ResponseEntity<>(newUser, HttpStatus.CREATED);
