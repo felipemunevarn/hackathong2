@@ -16,7 +16,7 @@ public class Inscripcion {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long inscripcion_Id;
+    private Long inscripcion_id;
 
     @Column(name = "fecha_inscripcion", nullable = false)
     private LocalDate fechaInscripcion;
@@ -24,15 +24,15 @@ public class Inscripcion {
     @Column(nullable = false)
     private String estado;
 
-    @ManyToOne
-    @JoinColumn(name = "user_ID",  nullable = false)
+    @ManyToOne()
+    @JoinColumn(name = "user_id",  nullable = false)
     private User user;
 
-    @ManyToOne
-    @JoinColumn(name = "equipo_id", nullable = false)
+    @ManyToOne()
+    @JoinColumn(name = "equipo_id")
     private Equipo equipo;
 
-    @ManyToOne
+    @ManyToOne()
     @JoinColumn(name = "evento_id", nullable = false)
     private Evento evento;
 

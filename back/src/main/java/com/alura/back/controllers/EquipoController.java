@@ -1,35 +1,36 @@
 package com.alura.back.controllers;
 
 import com.alura.back.Dtos.responseDto.EquipoResponseDto;
-import com.alura.back.entities.Equipo;
-import com.alura.back.entities.User;
+import com.alura.back.Dtos.responseDto.EquipoResultadoResponseDto;
 import com.alura.back.services.interfaceService.IEquipoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
- * Controlador para gestionar los equipos
- * Developer leonardo vargas
+ * Autor: leonardo vargas
+ * email: leonardovargasfp@gmail.com
+ * descirpción: clase encargada de la gestion para generar equipos aleatorios y moificarlos
  */
 @RestController
-@RequestMapping("/equipos")
 @RequiredArgsConstructor
+@RequestMapping(path = "/api/v1/equipos")
 public class EquipoController {
 
     private final IEquipoService equipoService;
 
-    // TO-DO --->sacar el id del token en la petición
-    @PostMapping
-    public ResponseEntity<EquipoResponseDto> crearEquipos(@RequestBody User user){
-
-        Long userId= 1L;
-        return new ResponseEntity<>(equipoService.GererarEquipos(userId) , HttpStatus.CREATED);
+    // TO-DO --->sacar el id del token en la petición cuando este implementado
+    @PostMapping(value = "/{eventoId}")
+    public ResponseEntity<EquipoResultadoResponseDto> crearEquipos(@PathVariable("eventoId") Long eventoId){
+        return new ResponseEntity<>(equipoService.GererarEquipos(eventoId) , HttpStatus.CREATED);
     }
 
+    @GetMapping(value = "/{eventoId}")
+    public ResponseEntity<List<EquipoResponseDto>> ListaInscriptosEvento(@PathVariable("eventoId") Long eventoId) {
+        return new ResponseEntity<>(equipoService.ListarEquipos(eventoId), HttpStatus.OK);
+    }
 
 }

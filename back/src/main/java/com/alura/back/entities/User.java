@@ -26,10 +26,11 @@ public class User {
             strategy = GenerationType.SEQUENCE,
             generator = "user_sequence"
     )
-    private Long user_Id;
+    private Long user_id;
     private String firstName;
     private String lastName;
     private LocalDate dateOfBirths;
+    private String passwod;
     private String gender;
 
     @Column(unique = true)

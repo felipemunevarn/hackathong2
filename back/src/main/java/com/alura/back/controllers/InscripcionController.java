@@ -1,5 +1,6 @@
 package com.alura.back.controllers;
 
+import com.alura.back.Dtos.responseDto.DeleteResponseDto;
 import com.alura.back.Dtos.responseDto.InscripcionResponseDto;
 import com.alura.back.services.interfaceService.IInscripcionService;
 import lombok.RequiredArgsConstructor;
@@ -16,21 +17,26 @@ import java.util.List;
  */
 
 @RestController
-@RequestMapping("/incripciones")
+@RequestMapping(path = "/api/v1/inscripciones")
 @RequiredArgsConstructor
 public class InscripcionController {
 
     private final IInscripcionService inscripcionService;
 
-    //To-do sacar el id de la peticion
-    @PostMapping("/{eventoId}")
-    public ResponseEntity<InscripcionResponseDto> crearInscripcio(@PathVariable("eventoId") Long eventoId )  {
-       Long userID = 1L;
-       return new ResponseEntity<InscripcionResponseDto>(inscripcionService.crearInscripcion(eventoId , userID) , HttpStatus.CREATED);
+    //To-do sacar el id de la petición y validar que no se vuelva a inscribir
+    @PostMapping(value = "/{eventoId}/{userId}")
+    public ResponseEntity<InscripcionResponseDto> crearInscripcion(@PathVariable("eventoId") Long eventoId , @PathVariable("userId") Long userId) {
+    //Long userID = 1L;
+       return new ResponseEntity<>(inscripcionService.crearInscripcion(eventoId , userId) , HttpStatus.CREATED);
     }
 
-    @GetMapping()
-    public ResponseEntity<List<InscripcionResponseDto>> ObtenerListaInscriptos(){
-        return new ResponseEntity<List<InscripcionResponseDto>>(inscripcionService.ListarInscritos() , HttpStatus.OK);
+    @GetMapping(value = "/{eventoId}")
+    public ResponseEntity<List<InscripcionResponseDto>> ObtenerListaInscriptos(@PathVariable("eventoId") Long eventoId){
+        return new ResponseEntity<>(inscripcionService.ListarInscritos(eventoId) , HttpStatus.OK);
+    }
+
+    @DeleteMapping(value = "/{inscripcionId}")
+    public ResponseEntity<DeleteResponseDto> darDeBajaInscripcion(@PathVariable("inscripcionId") Long inscripId){
+        return new ResponseEntity<>(inscripcionService.darBajaInscripcion(inscripId) , HttpStatus.OK);
     }
 }
