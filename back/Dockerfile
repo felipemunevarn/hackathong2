@@ -7,11 +7,12 @@ WORKDIR /app
 # Instala Maven
 RUN apk add --no-cache maven
 
-# Copia el código fuente del proyecto al contenedor
-COPY . /app/
 
 # Ejecuta Maven para construir el JAR
 RUN mvn clean package -DskipTests
+
+# Copia el código fuente del proyecto al contenedor
+COPY . /app/
 
 # Expone el puerto en el que la aplicación estará escuchando
 EXPOSE 8080
