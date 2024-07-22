@@ -17,19 +17,18 @@ import java.util.List;
  */
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/v1/equipos")
+@RequestMapping(path = "/api/v1/equipos")
 public class EquipoController {
 
     private final IEquipoService equipoService;
 
     // TO-DO --->sacar el id del token en la petición cuando este implementado
-    @PostMapping("/{eventoId}")
+    @PostMapping(value = "/{eventoId}")
     public ResponseEntity<EquipoResultadoResponseDto> crearEquipos(@PathVariable("eventoId") Long eventoId){
-
         return new ResponseEntity<>(equipoService.GererarEquipos(eventoId) , HttpStatus.CREATED);
     }
 
-    @GetMapping("/{eventoId}")
+    @GetMapping(value = "/{eventoId}")
     public ResponseEntity<List<EquipoResponseDto>> ListaInscriptosEvento(@PathVariable("eventoId") Long eventoId) {
         return new ResponseEntity<>(equipoService.ListarEquipos(eventoId), HttpStatus.OK);
     }

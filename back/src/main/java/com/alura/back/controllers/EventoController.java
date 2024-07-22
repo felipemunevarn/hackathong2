@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/eventos")
+@RequestMapping(path = "/api/v1/eventos")
 public class EventoController {
     private final EventoServiceImpl eventoService;
 
@@ -49,13 +49,13 @@ public class EventoController {
         }
     }
 
-    @GetMapping("/{id}")
+    @GetMapping(value = "/{id}")
     public ResponseEntity<EventoResponseDto> getEventoById(@PathVariable Long id) {
         EventoResponseDto evento = eventoService.findById(id);
         return evento != null ? new ResponseEntity<>(evento, HttpStatus.OK) : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping(value = "/{id}")
     public ResponseEntity<?> updateEvento(@PathVariable Long id, @Valid @RequestBody EventoRequestDto eventoRequestDto) {
         try {
             if (eventoService.findById(id) == null) {
@@ -70,7 +70,7 @@ public class EventoController {
         }
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping(value = "/{id}")
     public ResponseEntity<?> deleteEvento(@PathVariable Long id) {
         try {
             if (eventoService.findById(id) == null) {

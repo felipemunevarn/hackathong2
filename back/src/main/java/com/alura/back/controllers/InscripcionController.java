@@ -17,7 +17,7 @@ import java.util.List;
  */
 
 @RestController
-@RequestMapping("/api/v1/inscripciones")
+@RequestMapping(path = "/api/v1/inscripciones")
 @RequiredArgsConstructor
 public class InscripcionController {
 
@@ -30,12 +30,12 @@ public class InscripcionController {
        return new ResponseEntity<>(inscripcionService.crearInscripcion(eventoId , userId) , HttpStatus.CREATED);
     }
 
-    @GetMapping("/{eventoId}")
+    @GetMapping(value = "/{eventoId}")
     public ResponseEntity<List<InscripcionResponseDto>> ObtenerListaInscriptos(@PathVariable("eventoId") Long eventoId){
         return new ResponseEntity<>(inscripcionService.ListarInscritos(eventoId) , HttpStatus.OK);
     }
 
-    @DeleteMapping("/{inscripcionId}")
+    @DeleteMapping(value = "/{inscripcionId}")
     public ResponseEntity<DeleteResponseDto> darDeBajaInscripcion(@PathVariable("inscripcionId") Long inscripId){
         return new ResponseEntity<>(inscripcionService.darBajaInscripcion(inscripId) , HttpStatus.OK);
     }
