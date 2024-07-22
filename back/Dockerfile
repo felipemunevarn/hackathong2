@@ -1,4 +1,5 @@
 # Usa una imagen base con OpenJDK 17 y Alpine
+# Usa la imagen base de OpenJDK 17 con Alpine
 FROM openjdk:17-jdk-alpine
 
 # Establece el directorio de trabajo
@@ -7,12 +8,11 @@ WORKDIR /app
 # Instala Maven
 RUN apk add --no-cache maven
 
+# Copia el código fuente del proyecto al contenedor
+COPY . /app/
 
 # Ejecuta Maven para construir el JAR
 RUN mvn clean package -DskipTests
-
-# Copia el código fuente del proyecto al contenedor
-COPY . /app/
 
 # Expone el puerto en el que la aplicación estará escuchando
 EXPOSE 8080
