@@ -11,7 +11,7 @@
 	<groupId>com.alura</groupId>
 	<artifactId>back</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 	<name>back</name>
 	<description>Project for Alura hackathon group 2</description>
 	<url/>
