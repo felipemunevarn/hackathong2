@@ -1,4 +1,4 @@
-package com.alura.back.controllers;
+package com.alura.back.Dtos.responseDto;
 
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
