@@ -44,7 +44,7 @@ public class SecurityConfig {
                 .httpBasic(Customizer.withDefaults())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(http -> {
-                        http.requestMatchers(HttpMethod.POST, "/auth/**").permitAll();
+                        http.requestMatchers(HttpMethod.POST, "api/v1/auth/**").permitAll();
 //                        http.requestMatchers(HttpMethod.GET, "/api/v1/user").hasAnyAuthority("CREATE", "READ");
 //                        http.requestMatchers(HttpMethod.PUT, "/api/v1/user").hasAnyAuthority("CREATE", "READ", "UPDATE");
 //                        http.requestMatchers(HttpMethod.DELETE, "/api/v1/user").hasAnyAuthority("CREATE", "READ", "UPDATE", "DELETE");
@@ -54,15 +54,6 @@ public class SecurityConfig {
                 .addFilterBefore(new JwtTokenValidator(jwtUtils), BasicAuthenticationFilter.class)
                 .build();
     }
-
-//    @Bean
-//    public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
-//        return httpSecurity
-//                .csrf(csrf -> csrf.disable())
-//                .httpBasic(Customizer.withDefaults())
-//                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-//                .build();
-//    }
 
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
@@ -80,24 +71,5 @@ public class SecurityConfig {
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
-//        return NoOpPasswordEncoder.getInstance();
     }
-
-//    public UserDetailsService userDetailsService() {
-//        List<UserDetails> userDetailsList = new ArrayList<>();
-//
-//        userDetailsList.add(User.withUsername("admin@hackathon.g2")
-//            .password("admin1234")
-//            .roles("ADMIN")
-//            .authorities("READ", "CREATE")
-//            .build());
-//
-//        userDetailsList.add(User.withUsername("user@hackathon.g2")
-//            .password("user1234")
-//            .roles("USER")
-//            .authorities("READ")
-//            .build());
-//
-//        return new InMemoryUserDetailsManager(userDetailsList);
-//    }
 }
