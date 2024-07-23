@@ -24,14 +24,13 @@ public class UserController {
 
     @GetMapping
     public ResponseEntity<List<UserResponseDto>> getUsers() {
-        List<UserResponseDto> users = userService.getUsers();
-        return new ResponseEntity<>(users, HttpStatus.OK);
+        return new ResponseEntity<>(userService.getUsers(), HttpStatus.OK);
     }
 
     @GetMapping(value = "/{id}")
     public ResponseEntity<UserResponseDto> getUserById(@PathVariable Long id) {
         UserResponseDto user = userService.getUserById(id);
-        return user != null ? new ResponseEntity<>(user, HttpStatus.OK) : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        return user != null ? new ResponseEntity<>(userService.getUserById(id), HttpStatus.OK) : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
     @PostMapping
     public ResponseEntity<UserResponseDto> createUser(@RequestBody UserRequestDto userRequestDto) {
