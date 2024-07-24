@@ -1,0 +1,1 @@
+export const API_URL = "https://hackaton-3cnf.onrender.com/api/v1";

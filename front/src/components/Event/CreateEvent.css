@@ -1,0 +1,28 @@
+.create-event-page {
+  max-width: 1000px;
+  margin: 2rem auto;
+  padding: 2rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  margin-bottom: 2rem;
+}
+
+.create-event-page h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.form-group label {
+  font-weight: bold;
+}
+
+.form-control {
+  border-radius: 4px;
+}
+
+.btn-block {
+  width: 100%;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}

@@ -1,0 +1,26 @@
+.filter-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 1rem;
+}
+
+.event-filter {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+.event-filter .form-group {
+  margin-right: 1rem;
+}
+
+.event-filter .form-group:last-child {
+  margin-right: 0;
+}
+
+.event-filter .form-control {
+  width: 200px;
+}

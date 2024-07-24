@@ -1,0 +1,22 @@
+.my-events {
+  margin-top: 2rem;
+}
+
+.tab-content {
+  padding: 1rem;
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.event-card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.event-card {
+  flex: 1 1 calc(33.333% - 1rem);
+  box-sizing: border-box;
+  margin-bottom: 1rem;
+}

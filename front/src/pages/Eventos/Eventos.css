@@ -1,0 +1,30 @@
+.events-page {
+  padding: 20px;
+}
+
+.filter-container {
+  margin-bottom: 20px;
+}
+
+.event-card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.event-card .card-img-top {
+  height: 200px;
+  object-fit: cover;
+}
+
+.event-card .card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.event-card .badge {
+  margin-top: 10px;
+}
