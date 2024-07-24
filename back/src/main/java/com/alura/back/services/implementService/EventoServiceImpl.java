@@ -16,11 +16,14 @@ import java.util.List;
 @Service
 public class EventoServiceImpl implements IEventService {
 
-    @Autowired
-    private EventoRepository eventoRepository;
+    private final EventoRepository eventoRepository;
+    private final EventoMapper eventoMapper;
 
     @Autowired
-    private EventoMapper eventoMapper;
+    public EventoServiceImpl(EventoRepository eventoRepository, EventoMapper eventoMapper) {
+        this.eventoRepository = eventoRepository;
+        this.eventoMapper = eventoMapper;
+    }
 
     @Override
     public List<EventoResponseDto> findAll() {
