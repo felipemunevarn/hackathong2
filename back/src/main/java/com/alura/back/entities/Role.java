@@ -1,5 +1,6 @@
 package com.alura.back.entities;
 
+import com.alura.back.utils.RoleEnum;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;

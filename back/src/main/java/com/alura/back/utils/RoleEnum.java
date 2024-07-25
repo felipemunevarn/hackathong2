@@ -1,4 +1,4 @@
-package com.alura.back.entities;
+package com.alura.back.utils;
 
 public enum RoleEnum {
     ADMIN,
