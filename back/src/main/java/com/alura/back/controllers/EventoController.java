@@ -24,29 +24,12 @@ public class EventoController {
 
     @PostMapping
     public ResponseEntity<?> createEvento(@Valid @RequestBody EventoRequestDto eventoRequestDto) {
-        try {
-            EventoResponseDto newEvento = eventoService.save(eventoRequestDto);
-            return new ResponseEntity<>(newEvento, HttpStatus.CREATED);
-        } catch (Exception e) {
-            // Log the exception message
-            System.out.println("Error while creating event: " + e.getMessage());
-            return new ResponseEntity<>(new ErrorResponseDto(e.getMessage()),  HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+        return new ResponseEntity<>(eventoService.save(eventoRequestDto), HttpStatus.CREATED);
     }
 
     @GetMapping
     public ResponseEntity<List<EventoResponseDto>> getEventos() {
-        try {
-            List<EventoResponseDto> eventos = eventoService.findAll();
-            if (eventos.isEmpty()) {
-                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-            }
-            return new ResponseEntity<>(eventos, HttpStatus.OK);
-        } catch (Exception e) {
-            // Log the exception message
-            System.out.println("Error while fetching events: " + e.getMessage());
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+        return new ResponseEntity<>(eventoService.findAll(), HttpStatus.OK);
     }
 
     @GetMapping(value = "/{id}")
@@ -57,31 +40,14 @@ public class EventoController {
 
     @PutMapping(value = "/{id}")
     public ResponseEntity<?> updateEvento(@PathVariable Long id, @Valid @RequestBody EventoRequestDto eventoRequestDto) {
-        try {
-            if (eventoService.findById(id) == null) {
-                return new ResponseEntity<>(new ErrorResponseDto("Evento not found with id: " + id), HttpStatus.NOT_FOUND);
-            }
-            EventoResponseDto updatedEvento = eventoService.update(id, eventoRequestDto);
-            return new ResponseEntity<>(updatedEvento, HttpStatus.OK);
-        } catch (Exception e) {
-            // Log the exception message
-            System.out.println("Error while updating event: " + e.getMessage());
-            return new ResponseEntity<>(new ErrorResponseDto(e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+        EventoResponseDto updateEvento = eventoService.update(id, eventoRequestDto);
+        return updateEvento != null ? new ResponseEntity<>(updateEvento, HttpStatus.OK) : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<?> deleteEvento(@PathVariable Long id) {
-        try {
-            if (eventoService.findById(id) == null) {
-                return new ResponseEntity<>(new ErrorResponseDto("Evento not found with id: " + id), HttpStatus.NOT_FOUND);
-            }
-            eventoService.delete(id);
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        } catch (Exception e) {
-            // Log the exception message
-            System.out.println("Error while deleting event: " + e.getMessage());
-            return new ResponseEntity<>(new ErrorResponseDto(e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+        eventoService.delete(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+
 }

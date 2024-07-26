@@ -43,6 +43,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+
         User user = userRepository.findUserByEmail(email)
                 .orElseThrow(() -> new UsernameNotFoundException("User with email: " + email + " does not exist"));
 
@@ -62,10 +63,12 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     }
 
     public AuthResponse loginUser(AuthLoginRequest authLoginRequest) {
+
         String userEmail = authLoginRequest.userEmail();
         String password = authLoginRequest.password();
 
         Authentication authentication = this.authenticate(userEmail, password);
+
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
         String accessToken = jwtUtils.createToken(authentication);
@@ -84,13 +87,17 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         if (roleSet.isEmpty()) {
             throw new IllegalArgumentException("Role specified does not exist");
         }
-
         User user = User.builder()
                 .email(userEmail)
                 .password(passwordEncoder.encode(password))
                 .roles(roleSet)
+                .firstName(authCreateUserRequest.firstName())
+                .lastName(authCreateUserRequest.lastName())
+                .dateOfBirths(authCreateUserRequest.dateOfBirths())  // Usar el método correcto
+                .gender(authCreateUserRequest.gender())
+                .devType(authCreateUserRequest.role())
+                .role(authCreateUserRequest.role())
                 .build();
-
         User userCreated = userRepository.save(user);
 
         ArrayList<SimpleGrantedAuthority> authorityList = new ArrayList<>();
@@ -116,7 +123,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             throw new BadCredentialsException("Invalid userEmail or Password");
         }
 
-        if (passwordEncoder.matches(password, userDetails.getPassword())) {
+        if (!passwordEncoder.matches(password, userDetails.getPassword())) {
             throw new BadCredentialsException("Invalid password");
         }
 
