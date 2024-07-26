@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import bcrypt from 'bcryptjs';
 import { Form, Button, Container, Spinner, Row, Col } from 'react-bootstrap';
 import DatePicker from 'react-datepicker';
 import { useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
 import { useAuth } from "../../context/AuthContext";
 import 'react-datepicker/dist/react-datepicker.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
