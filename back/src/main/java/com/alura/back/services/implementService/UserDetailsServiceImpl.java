@@ -87,13 +87,17 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         if (roleSet.isEmpty()) {
             throw new IllegalArgumentException("Role specified does not exist");
         }
-
         User user = User.builder()
                 .email(userEmail)
                 .password(passwordEncoder.encode(password))
                 .roles(roleSet)
+                .firstName(authCreateUserRequest.firstName())
+                .lastName(authCreateUserRequest.lastName())
+                .dateOfBirths(authCreateUserRequest.dateOfBirths())  // Usar el método correcto
+                .gender(authCreateUserRequest.gender())
+                .devType(authCreateUserRequest.role())
+                .role(authCreateUserRequest.role())
                 .build();
-
         User userCreated = userRepository.save(user);
 
         ArrayList<SimpleGrantedAuthority> authorityList = new ArrayList<>();

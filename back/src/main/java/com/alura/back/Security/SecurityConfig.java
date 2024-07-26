@@ -44,7 +44,8 @@ public class SecurityConfig {
                 .httpBasic(Customizer.withDefaults())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(http -> {
-                        http.requestMatchers(HttpMethod.POST, "api/v1/auth/**").permitAll();
+                    http.requestMatchers("/swagger-ui/**", "/v3/api-docs/**").permitAll();
+                    http.requestMatchers(HttpMethod.POST, "api/v1/auth/**").permitAll();
                         http.requestMatchers(HttpMethod.GET, "/api/v1/user").hasAnyAuthority("CREATE", "READ");
                         http.requestMatchers(HttpMethod.PUT, "/api/v1/user").hasAnyAuthority("CREATE", "READ", "UPDATE");
                         http.requestMatchers(HttpMethod.DELETE, "/api/v1/user").hasAnyAuthority("CREATE", "READ", "UPDATE", "DELETE");
